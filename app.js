@@ -86,3 +86,43 @@ async function tvMazeFunc(){
   }
 }
 tvMazeFunc();
+
+// BONUS
+// 5
+const body = document.querySelector(`body`);
+const image1 = document.createElement(`img`);
+body.append(image1);
+
+async function pokemonFunc(){
+  const pikachu = await axios.get(`https://pokeapi.co/api/v2/pokemon/pikachu`);
+  console.log(`Question 5`);
+  console.log(pikachu);
+  console.log(pikachu.data.sprites.front_default);
+  image1.src = pikachu.data.sprites.front_default;
+}
+pokemonFunc();
+
+// USING .THEN
+// axios.get(`https://pokeapi.co/api/v2/pokemon/pikachu`)
+// .then(res => {
+//   image1.src = res.data.sprites.front_default;
+// })
+
+// 6
+const image2 = document.createElement(`img`);
+body.append(image2);
+
+async function omdb(){
+  // NOTE: When using an API Key it should be put in a separate file so that file can be added to a gitignore file so the API key will not be pushed up when pushing the file(s) up to GitHub. Also, for this request I am using my personal API key.
+  const response = await axios.get(`http://www.omdbapi.com/?apikey=db7c7992&t=Frozen`);
+  console.log(`Question 6`);
+  console.log(response);
+  image2.src = response.data.Poster;
+}
+omdb();
+
+// USING .THEN
+// axios.get(`http://www.omdbapi.com/?apikey=db7c7992&t=Frozen`)
+// .then(res => {
+//   image2.src = res.data.Poster;
+// })
